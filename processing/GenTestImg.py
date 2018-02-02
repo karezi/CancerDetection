@@ -1,4 +1,4 @@
-# Generate testing images with 128*128 in different levels.
+# Generate testing images with 128*128 in different levels from Camelyon 2017.
 import numpy
 from PIL import Image
 from pylab import *

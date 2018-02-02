@@ -18,7 +18,7 @@ class ColorFCN(object):
 
     def _construct_model(self, display=None):
         model = Sequential()
-        model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same', input_shape=(None, None, 1)))
+        model.add(Conv2D(filters=32, kernel_size=(3, 3), activation='relu', padding='same', input_shape=(None, None, 3)))
         model.add(MaxPool2D())
 
         model.add(Conv2D(filters=64, kernel_size=(3, 3), activation='relu', padding='same'))
@@ -51,6 +51,7 @@ class ColorFCN(object):
 
     def draw_framework(self):
         plot_model(self._model, to_file='ColorFCN.png', show_shapes=True, show_layer_names=True)
+
 
 if __name__ == '__main__':
     ColorFCN(draw_framework=True)
