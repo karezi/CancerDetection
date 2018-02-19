@@ -3,7 +3,7 @@ import os
 import glob
 import random
 
-LEVEL = 8
+LEVEL = 2
 INPUT_ROOT = '/home/suidong/Documents/output/camelyon17/'
 OUTPUT_ROOT = '/home/suidong/Documents/output/camelyon17/'
 IMG_EDGE_DIR = INPUT_ROOT + 'patch_edge/' + str(LEVEL) + '/'
@@ -24,13 +24,14 @@ class PatchRandomSelecet(object):
 
 
     def select_img(self):
-        edge_list = glob.glob(os.path.join(IMG_EDGE_DIR, '*.tif'))
-        tumor_list = glob.glob(os.path.join(IMG_TUMOR_DIR, '*.tif'))
-        normal_list = glob.glob(os.path.join(IMG_NORMAL_DIR, '*.tif'))
+        edge_list = glob.glob(os.path.join(IMG_EDGE_DIR, '*.png'))
+        tumor_list = glob.glob(os.path.join(IMG_TUMOR_DIR, '*.png'))
+        normal_list = glob.glob(os.path.join(IMG_NORMAL_DIR, '*.png'))
         count = len(edge_list) + len(tumor_list)
         normal_list = random.sample(normal_list, count)
         final_list = edge_list + tumor_list + normal_list
         random.shuffle(final_list)
+        print(len(final_list))
         self.get_type(final_list)
         final_list_len = len(final_list)
         train_len = int(final_list_len * 0.8)
@@ -40,18 +41,18 @@ class PatchRandomSelecet(object):
         for index, file_path in enumerate(train_list):
             new_file_name = "train_" + str(index)
             im = Image.open(file_path)
-            im.save(os.path.join(SLIDE_TRAIN_DIR, new_file_name))
+            im.save(os.path.join(SLIDE_TRAIN_DIR, new_file_name), 'PNG')
             mask_path = self.find_mask_path(file_path)
             im2 = Image.open(mask_path)
-            im2.save(os.path.join(MASK_TRAIN_DIR, new_file_name))
+            im2.save(os.path.join(MASK_TRAIN_DIR, new_file_name), 'PNG')
         # test_list save
         for index, file_path in enumerate(test_list):
             new_file_name = "test_" + str(index)
             im = Image.open(file_path)
-            im.save(os.path.join(SLIDE_TEST_DIR, new_file_name))
+            im.save(os.path.join(SLIDE_TEST_DIR, new_file_name), 'PNG')
             mask_path = self.find_mask_path(file_path)
             im2 = Image.open(mask_path)
-            im2.save(os.path.join(MASK_TEST_DIR, new_file_name))
+            im2.save(os.path.join(MASK_TEST_DIR, new_file_name), 'PNG')
 
 
     def find_mask_path(self, url):
@@ -62,8 +63,8 @@ class PatchRandomSelecet(object):
         return os.path.join(dn2 + '_mask', bn2, bn)
 
 
-    def get_type(self, l):
-        for index, file_name in enumerate(l):
+    def get_type(self, final_list):
+        for index, file_name in enumerate(final_list):
             dn = os.path.dirname(file_name)
             dn2 = os.path.dirname(dn)
             type = os.path.basename(dn2)

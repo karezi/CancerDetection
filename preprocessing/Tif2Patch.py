@@ -8,7 +8,7 @@ import glob
 
 IMG_SUFFIX = 'png'
 SINGLE_WH = 128
-LEVEL = 5
+LEVEL = 2
 
 INPUT_ROOT = '/home/suidong/Documents/camelyon17_data_backup/'
 OUTPUT_ROOT = '/home/suidong/Documents/output/camelyon17/'
