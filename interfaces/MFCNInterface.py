@@ -10,11 +10,11 @@ from keras.callbacks import EarlyStopping
 from postprocessing.LossHistory import *
 from keras.preprocessing.image import ImageDataGenerator
 
-LEVEL = 2
+LEVEL = 6
 BATCH_SIZE = 32
 EPOCHS = 5
 TYPE = 1  # Is color
-MODE = 3  # 0:train without augment, 1:train with augment, 2:test, 3:test_all
+MODE = 1  # 0:train without augment, 1:train with augment, 2:test, 3:test_all
 INPUT_ROOT = '/home/suidong/Documents/output/camelyon17/'
 LOG_ROOT = '/home/suidong/Documents/output/camelyon17/log/'
 SLIDE_TRAIN_DIR = INPUT_ROOT + 'slide_train/' + str(LEVEL) + '/'
@@ -22,9 +22,11 @@ SLIDE_TEST_DIR = INPUT_ROOT + 'slide_test/' + str(LEVEL) + '/'
 MASK_TRAIN_DIR = INPUT_ROOT + 'mask_train/' + str(LEVEL) + '/'
 MASK_TEST_DIR = INPUT_ROOT + 'mask_test/' + str(LEVEL) + '/'
 H5_PATH = os.path.join(LOG_ROOT, "MFCNInterface." + str(LEVEL) + "." + str(int(time.time())) + ".h5")
-H5_PATH_GEN_5 = os.path.join(LOG_ROOT, "MFCNInterface.5.1518172234.good.h5")
+H5_PATH_GEN_6 = os.path.join(LOG_ROOT, "MFCNInterface.6.1519058660.h5")
+H5_PATH_GEN_5 = os.path.join(LOG_ROOT, "MFCNInterface.5.1518172234.h5")
 H5_PATH_GEN_4 = os.path.join(LOG_ROOT, "MFCNInterface.4.1518181780.h5")
 H5_PATH_GEN_3 = os.path.join(LOG_ROOT, "MFCNInterface.3.1518416911.h5")
+H5_PATH_GEN_2 = os.path.join(LOG_ROOT, "MFCNInterface.2.1518497504.h5")
 H5_PATH_GEN = os.path.join(LOG_ROOT, "MFCNInterface.2.1518497504.h5")
 TEST_IMG_NO = 9
 TEST_IMG_URL = SLIDE_TEST_DIR + '/test_' + str(TEST_IMG_NO)
